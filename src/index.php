@@ -1,50 +1,45 @@
 <?php
 include "include.php";
-// if (!isset($_SESSION["request"])) {
-//     $_SESSION["request"]=explode("/",trim($_SERVER["PATH_INFO"],"/")) ;
-// }
 
-$root = array(
-    "accueil",
-    "livre",
-    "ajouter",
-    "emprunter",
-    "retourner",
-    "rechercher",
-    "handlebooks",
-    "displaysearchbooks",
-    "dueloan",
-    "pageregister",
-    "pageconnexion",
-    "register",
-    "authentifier",
-    "deconnexion"
-);
-$root_connexion = array("pageregister", "pageconnexion", "register", "authentifier");
+// Définir les routes disponibles
+$routes = [
+    'accueil' => 'accueil',
+    'livre' => 'livre',
+    'ajouter' => 'ajouter',
+    'emprunter' => 'emprunter',
+    'retourner' => 'retourner',
+    'rechercher' => 'rechercher',
+    'handlebooks' => 'handleBooks',
+    'displaysearchbooks' => 'displaySearchBooks',
+    'dueloan' => 'dueLoan',
+    'pageregister' => 'pageRegister',
+    'pageconnexion' => 'pageConnexion',
+    'register' => 'register',
+    'authentifier' => 'authentifier',
+    'deconnexion' => 'deconnexion'
+];
 
-$arr = explode("/", trim($_SERVER["PATH_INFO"], "/"));
-$request = strtolower($arr[0]);
-// print_r($request) ; exit() ;
-// print_r($_SERVER) ; exit() ;
-if (in_array($request, $root)) {
-    $function = $request;
-    if (isset($_SESSION["connexion"])) {
-        // L'utilisateur est connecté
-        $title = ucwords($request);
+// Routes accessibles sans connexion
+$publicRoutes = ['pageregister', 'pageconnexion', 'register', 'authentifier'];
+
+// Récupérer la route demandée
+$request = strtolower(trim($_SERVER['PATH_INFO'], '/'));
+
+// Vérifier si la route existe
+if (array_key_exists($request, $routes)) {
+    $function = $routes[$request];
+
+    // Vérifier l'accès
+    if (isset($_SESSION['connexion']) || in_array($request, $publicRoutes)) {
+        $title = ucfirst($request);
         $content = $function();
         include "../views/template/default.php";
     } else {
-        // L'utilisateur n'est pas  connecté, on lui renvoie sur la page connexion
-        if (in_array($function, $root_connexion)) {
-            $function();
-        } else {
-            include "../views/reception/login.php";
-        }
+        // Rediriger vers la page de connexion
+        include "../views/reception/login.php";
     }
 } else {
-    //Error 
+    // Gestion des erreurs 404
+    http_response_code(404);
     echo "Page introuvable !";
 }
-
-
-// print_r($_POST) ; exit() ;

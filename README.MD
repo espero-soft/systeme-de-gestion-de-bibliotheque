@@ -9,69 +9,151 @@ Ce projet est un système de gestion de bibliothèque développé en PHP. Il per
 - Gestion des livres (ajout, suppression, modification)
 - Gestion des membres (ajout, suppression, modification)
 - Gestion des emprunts (enregistrement, retour)
+- Recherche avancée de livres
+- Interface d'administration
+- Authentification sécurisée
 
-## Prérequis
+## Technologies utilisées
 
-- Serveur web (Apache,Xampp, Nginx, etc.)
-- PHP 7.4 ou supérieur
-- Base de données MySQL
+- PHP 7.4+
+- MySQL
+- HTML5/CSS3
+- JavaScript
 
-## Installation
+## Installation avec Docker
 
-1. Clonez le projet sur votre machine locale :
+Le projet est conteneurisé avec Docker pour une installation facile.
+
+### Prérequis
+
+- Docker
+- Docker Compose
+
+### Étapes d'installation
+
+1. Cloner le dépôt :
+
    ```bash
    git clone https://github.com/zenon12/systeme-de-gestion-de-bibliotheque.git
-   ```
-2. Accédez au répertoire du projet :
-   ```bash
    cd systeme-de-gestion-de-bibliotheque
    ```
-3. Importez la base de données :
-  ``` bash
-   mysql -u root -p bibliotheque < "C:\Users\Elitebook-PC\projet-personnel-mudey\php_mysql\systeme_gestion_bibliothèque\database\gestion_biblioth__que.sql"
-```
 
-4. Configurez la connexion à la base de données dans `config.php`.
+2. Démarrer les conteneurs :
+
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Accéder à l'application :
+
+   - Application : http://localhost:8000
+   - PHPMyAdmin : http://localhost:8080
+
+4. Importer la base de données :
+   - Se connecter à PHPMyAdmin (root/root)
+   - Créer une base de données nommée `library`
+   - Importer le fichier `initdb/db.sql`
+
+### Structure des conteneurs
+
+- `php`: Serveur web avec PHP 7.4
+- `mysql`: Base de données MySQL
+- `phpmyadmin`: Interface d'administration MySQL
+
+## Configuration manuelle
+
+### Prérequis
+
+- Serveur web (Apache/Nginx)
+- PHP 7.4+
+- MySQL 5.7+
+
+### Étapes d'installation
+
+1. Importer la base de données :
+
+   ```bash
+   mysql -u root -p library < database/gestion_biblioth__que.sql
+   ```
+
+2. Configurer les accès à la base de données dans `config/config.php`
+
+3. Déployer les fichiers sur votre serveur web
 
 ## Utilisation
 
-Le système de gestion de bibliothèque permet aux utilisateurs de gérer les opérations courantes liées à une bibliothèque, 
-telles que l’ajout de livres, la gestion des emprunts et des retours, ainsi que la recherche de livres. Voici comment utiliser le projet :
+### Comptes par défaut
 
-**1. Lancement de l'application**
+- Administrateur :
 
-Assurez-vous que votre serveur web (par exemple,XAMPP,WAMP ou MAMP) et votre serveur de base de données sont opérationnels.
-Placez les fichiers du projet dans le répertoire de votre serveur (par exemple, htdocs pour XAMPP).<br>
-Accédez à l'application via votre navigateur à l'adresse suivante :
+  - Email: mamadousaliouba588@gmail.com
+  - Mot de passe: admin123
 
-``` 
-https://localhost/systeme-de-gestion-de-bibliothque
-``` 
-**2. Fonctionnalités principales**
+- Utilisateur :
+  - Email: binta123@gmail.com
+  - Mot de passe: user123
 
-a. Gestion des utilisateurs
+### Fonctionnalités principales
 
-Inscription : Les utilisateurs doivent créer un compte en fournissant leurs informations personnelles.<br>
-Connexion : Les utilisateurs enregistrés peuvent se connecter pour accéder à leurs fonctionnalités personnalisées.
+- **Gestion des livres** :
 
-b. Gestion des livres
+  - Ajout/suppression/modification
+  - Recherche par titre, auteur ou genre
 
-Ajouter de nouveaux livres : Accédez à la section Ajouter un livre et renseignez les détails requis (titre, auteur, année, genre, ISBN, etc.).
+- **Gestion des utilisateurs** :
 
-c. Gestion des emprunts
+  - Inscription/connexion
+  - Profil utilisateur
 
-Emprunter un livre : Les utilisateurs peuvent rechercher un livre disponible et effectuer une demande d'emprunt.<br>
-Retourner un livre : Les utilisateurs doivent enregistrer le retour d’un livre après la période d’emprunt.
+- **Gestion des emprunts** :
+  - Emprunt/retour de livres
+  - Historique des emprunts
 
-d. Recherche
+## Développement
 
-Recherche avancée : Recherchez des livres par titre, auteur, ou genre en utilisant la section recherche.
+### Commandes utiles
 
-**3. Technologies utilisées**
+- Redémarrer les conteneurs :
 
-Backend : PHP avec PDO pour interagir avec la base de données.<br>
-Base de données: MySQL.<br>
-FrontEnd:HTML, CSS, Javascript.<br>
+  ```bash
+  docker-compose restart
+  ```
 
+- Voir les logs :
 
+  ```bash
+  docker-compose logs -f
+  ```
 
+- Arrêter les conteneurs :
+  ```bash
+  docker-compose down
+  ```
+
+### Structure du projet
+
+```
+.
+├── config/          # Fichiers de configuration
+├── database/        # Scripts de base de données
+├── initdb/          # Données initiales
+├── model/           # Modèles et couche d'accès aux données
+├── src/             # Code source principal
+├── views/           # Templates et vues
+├── Dockerfile       # Configuration Docker pour PHP
+└── docker-compose.yml # Configuration des services
+```
+
+## Contribution
+
+Les contributions sont les bienvenues ! Veuillez suivre ces étapes :
+
+1. Forker le projet
+2. Créer une branche (`git checkout -b feature/AmazingFeature`)
+3. Committer vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Pousser vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrir une Pull Request
+
+## Licence
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
