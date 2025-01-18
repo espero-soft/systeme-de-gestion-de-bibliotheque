@@ -1,37 +1,37 @@
-# Use the official PHP image with Apache
+# Utiliser l'image officielle PHP avec Apache
 FROM php:apache
 
-# Install necessary PHP extensions
+# Installer les extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
-    php-mysql \
-    php-cli \
-    php-fpm \
-    php-json \
-    php-common \
-    php-mbstring \
-    php-xml \
-    php-zip \
-    php-gd \
-    php-curl \
+    php8.2-mysql \
+    php8.2-cli \
+    php8.2-fpm \
+    php8.2-json \
+    php8.2-common \
+    php8.2-mbstring \
+    php8.2-xml \
+    php8.2-zip \
+    php8.2-gd \
+    php8.2-curl \
     && apt-get clean
 
-# Enable Apache mod_rewrite
+# Activer le module mod_rewrite d'Apache
 RUN a2enmod rewrite
 
-# Set the working directory
+# Définir le répertoire de travail
 WORKDIR /var/www/html
 
-# Copy the current directory contents into the container at /var/www/html
+# Copier le contenu du répertoire courant dans le conteneur à /var/www/html
 COPY . /var/www/html
 
-# Set the appropriate permissions
+# Définir les permissions appropriées
 RUN chown -R www-data:www-data /var/www/html
 
-# Update the Apache configuration to allow .htaccess files
+# Mettre à jour la configuration d'Apache pour permettre les fichiers .htaccess
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
-# Expose port 80
+# Exposer le port 80
 EXPOSE 80
 
-# Start Apache server
+# Démarrer le serveur Apache
 CMD ["apache2-foreground"]

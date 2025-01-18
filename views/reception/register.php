@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/gestion_bibliotheque/src/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/src/css/main.css">
 </head>
+
 <body>
     <div id="app-form" class="relative">
         <div class="form-container absolute">
@@ -49,7 +51,7 @@
                     </div>
                     <div class="form-error error-password">
                     </div>
-    
+
                     <div class="form-row flex relative">
                         <input type="password" class="flex-1" name="confirm_password" autocomplete="on" id="confirm-password"
                             placeholder="Confirm your password...">
@@ -70,7 +72,8 @@
 
 
 
-    <script src="/gestion_bibliotheque/src/js/listeners.js"></script>
-    <script src="/gestion_bibliotheque/src/js/main.js"></script>
+    <script src="/src/js/listeners.js"></script>
+    <script src="/src/js/main.js"></script>
 </body>
+
 </html>

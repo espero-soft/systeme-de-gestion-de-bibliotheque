@@ -1,56 +1,58 @@
-#app-form{
-   background-image: url("/gestion_bibliotheque/src/image/library.jpg");
-   background-size: cover;
-   background-repeat: no-repeat;
-   width: 100%;
-   height: 100vh;
+#app-form {
+    background-image: url("/src/image/library.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
 }
 
-.form-container{
+.form-container {
     width: 100%;
     max-width: 450px;
     /* background-color: #364d44; */
     background-color: rgb(8, 8, 63);
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     padding: 10px;
 }
 
-.form-title{
+.form-title {
     text-align: center;
     text-transform: uppercase;
     color: white;
 }
 
 .form-row #role,
-.form-row input{
+.form-row input {
     font-size: 1.05rem;
 }
 
-.form-container .form-button .btn-submit{
+.form-container .form-button .btn-submit {
     text-transform: uppercase;
     font-weight: bold;
     color: white;
     background-color: rgb(120, 198, 120);
 }
-.form-container .message{
+
+.form-container .message {
     color: white;
     font-size: 0.8rem;
     font-style: italic;
 }
-.form-container .message a{
+
+.form-container .message a {
     color: green;
 }
 
-.icon-password{
+.icon-password {
     right: 5px;
     top: 10px;
     cursor: pointer;
 }
 
-.form-error{
-    color: red ;
+.form-error {
+    color: red;
     font-size: 0.8rem;
 }
 
@@ -58,4 +60,3 @@
     cursor: not-allowed ;
     opacity: 0.7;
 } */
-
